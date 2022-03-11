@@ -1,5 +1,6 @@
 const fs = require("fs")
 
+//?  ticker 목록을 static/tickers.ts 에 추가
 const run = async () => {
     try {
         const dailyStocksString = fs.readFileSync(

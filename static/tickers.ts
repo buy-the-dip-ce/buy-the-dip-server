@@ -1,4 +1,4 @@
-const tickers = [
+export const tickers = [
     "A",
     "AA",
     "AAC",

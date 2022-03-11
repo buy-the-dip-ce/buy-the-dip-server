@@ -2,6 +2,8 @@ import axios from "axios"
 import { createConnection, Connection } from "typeorm"
 import { User } from "../src/user/user.entity"
 import { Photo } from "../src/photos/photo.entity"
+import { Ticker } from "../src/ticker/ticker.entity"
+import { DailyStock } from "../src/dailyStock/dailyStock.entity"
 
 const dotenv = require("dotenv")
 
@@ -17,20 +19,21 @@ const run = async () => {
             username: process.env.DATABASE_USERNAME,
             password: process.env.DATABASE_PASSWORD,
             database: process.env.DATABASE_DATABASE_NAME,
-            entities: [User, Photo],
+            entities: [User, Photo, Ticker, DailyStock],
         })
-        await connection
-            .createQueryBuilder()
-            .insert()
-            .into(User)
-            .values([
-                { firstName: "Timber", lastName: "Saw", photos: [] },
-                { firstName: "Phantom", lastName: "Lancer", photos: [] },
-            ])
-            .execute()
+        const { tickers } = require("../static/tickers.ts")
+        const {} = await axios.get("")
         // const { data } = await axios.get<any>(
         //     "https://api.nasdaq.com/api/quote/AAPL/historical?assetclass=stocks&fromdate=2021-03-10&limit=9999&todate=2022-03-10"
         // )
+        console.log(tickers)
+        // await connection
+        //     .createQueryBuilder()
+        //     .insert()
+        //     .into(Ticker)
+        //     .values([{ symbol: "Timber", lastName: "Saw", photos: [] }])
+        //     .execute()
+
         // console.log(data.data.rows.forEach(row=>{
         //     row.forEach(daily=>daily.close daily.date)
         // }))
