@@ -7,6 +7,8 @@ import { User } from "./user/user.entity"
 import { ConfigModule, ConfigService } from "@nestjs/config"
 import { Photo } from "./photos/photo.entity"
 import configuration from "./configuration"
+import { DailyStock } from "./dailyStock/dailyStock.entity"
+import { Ticker } from "./ticker/ticker.entity"
 @Module({
     imports: [
         ConfigModule.forRoot({
@@ -22,7 +24,7 @@ import configuration from "./configuration"
                 username: configService.get("database").username,
                 password: configService.get("database").password,
                 database: configService.get("database").database,
-                entities: [User, Photo],
+                entities: [User, Photo, Ticker, DailyStock],
                 synchronize: true,
             }),
         }),
