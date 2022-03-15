@@ -1,26 +1,35 @@
-import { Entity, Column, PrimaryColumn, OneToMany } from "typeorm"
-import { Photo } from "../photos/photo.entity"
+import {
+  Entity,
+  Column,
+  PrimaryColumn,
+  OneToMany,
+  UpdateDateColumn,
+} from "typeorm";
+import { Photo } from "../photos/photo.entity";
 
 @Entity()
 export class Ticker {
-    @PrimaryColumn()
-    symbol: number
+  @PrimaryColumn()
+  symbol: number;
 
-    @Column()
-    name: string
+  @Column()
+  name: string;
 
-    @Column()
-    markey_cap: string
+  @Column()
+  markey_cap: string;
 
-    @Column({ type: "float" })
-    per: boolean
+  @Column({ type: "float" })
+  per: boolean;
 
-    @Column({ type: "float" })
-    high_52: number
+  @Column({ type: "float" })
+  high_52: number;
 
-    @Column()
-    sector: string
+  @Column()
+  sector: string;
 
-    @Column()
-    industry: string
+  @Column()
+  industry: string;
+
+  @UpdateDateColumn()
+  updatedAt: Date;
 }
