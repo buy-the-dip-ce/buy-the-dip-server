@@ -9,15 +9,24 @@ const run = async () => {
         )
 
         const dailyStocks = dailyStocksString.split("\r\n")
+
         fs.writeFileSync(
             "static/tickers.ts",
 
-            `const tickers =[${dailyStocks
+            `export const tickers =[${dailyStocks
                 .map((stock, index) => {
                     if (index === 0 || dailyStocks.length - 1 === index) {
                         return ""
                     }
-                    return `"${stock.split(",")[0]}"`
+                    const splits = stock.split(",")
+                    return JSON.stringify({
+                        symbol: splits[0],
+                        name: splits[1],
+                        market_cap: splits[5],
+                        country: splits[6],
+                        sector: splits[9],
+                        industry: splits[10],
+                    })
                 })
                 .filter((stock) => !!stock)}];`
         )

@@ -9,6 +9,7 @@ import { Photo } from "./photos/photo.entity"
 import configuration from "./configuration"
 import { DailyStock } from "./dailyStock/dailyStock.entity"
 import { Ticker } from "./ticker/ticker.entity"
+import { UsersModule } from "./user/users.module"
 @Module({
     imports: [
         ConfigModule.forRoot({
@@ -28,6 +29,7 @@ import { Ticker } from "./ticker/ticker.entity"
                 synchronize: true,
             }),
         }),
+        UsersModule,
     ],
     controllers: [AppController],
     providers: [AppService],
