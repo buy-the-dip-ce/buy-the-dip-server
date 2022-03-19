@@ -2,7 +2,7 @@ service: buy-the-dip
 
 custom:
     cloudWatchLogsTags:
-        TagName1: buy-the-dip-${opt:stage}
+        TagName1: buy-the-dip-${env:STAGE}
 
 plugins:
     - "serverless-plugin-typescript"
