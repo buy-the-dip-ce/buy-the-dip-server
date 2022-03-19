@@ -1,0 +1,90 @@
+{
+	"openapi": "3.0.0",
+	"paths": {
+		"/": {
+			"get": {
+				"operationId": "AppController_getHello",
+				"parameters": [],
+				"responses": {
+					"200": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/users": {
+			"get": {
+				"operationId": "UsersController_findAll",
+				"parameters": [],
+				"responses": {
+					"200": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/users/{id}": {
+			"get": {
+				"operationId": "UsersController_findOne",
+				"parameters": [
+					{
+						"name": "id",
+						"required": true,
+						"in": "path",
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": ""
+					}
+				}
+			},
+			"delete": {
+				"operationId": "UsersController_remove",
+				"parameters": [
+					{
+						"name": "id",
+						"required": true,
+						"in": "path",
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": ""
+					}
+				}
+			}
+		}
+	},
+	"info": {
+		"title": "Buy The Dip API Docs",
+		"description": "Buy The Dip API Swagger 입니다.\nAuthorization이 필요없습니다.",
+		"version": "1.0.0",
+		"contact": {}
+	},
+	"tags": [],
+	"servers": [
+		{
+			"url": "http://localhost:4000",
+			"description": "local"
+		}
+	],
+	"components": {
+		"securitySchemes": {
+			"bearer": {
+				"scheme": "bearer",
+				"bearerFormat": "JWT",
+				"type": "http",
+				"in": "header",
+				"name": "Authorization"
+			}
+		},
+		"schemas": {}
+	}
+}

@@ -5,6 +5,7 @@ enum Exchange {
     NYSE = "NYSE",
     NASDAQ = "NASDAQ",
 }
+//? 시가총액 단위 변경하기, updated_at yyyy-mm-dd로 변경하기
 @Entity()
 export class Ticker {
     @PrimaryColumn({ length: 15 })

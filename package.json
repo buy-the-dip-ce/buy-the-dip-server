@@ -21,15 +21,18 @@
         "test:e2e": "jest --config ./test/jest-e2e.json",
         "get-tickers": "ts-node ./script/getTickers.ts --transpile-only",
         "insert-historical-data": "ts-node ./script/getHistoricalData.ts --transpile-only",
-        "insert-daily-data": "ts-node ./script/getDailyStocks.ts --transpile-only"
+        "insert-daily-data": "ts-node ./script/getDailyStocks.ts --transpile-only",
+        "sample": "ts-node ./script/sample.ts --transpile-only"
     },
     "dependencies": {
         "@nestjs/common": "^8.0.0",
         "@nestjs/config": "^1.2.0",
         "@nestjs/core": "^8.0.0",
         "@nestjs/platform-express": "^8.0.0",
+        "@nestjs/swagger": "^5.2.0",
         "@nestjs/typeorm": "^8.0.3",
         "axios": "^0.26.1",
+        "finnhub": "^1.2.12",
         "mysql2": "^2.3.3",
         "reflect-metadata": "^0.1.13",
         "rimraf": "^3.0.2",
@@ -54,6 +57,7 @@
         "prettier": "^2.3.2",
         "source-map-support": "^0.5.20",
         "supertest": "^6.1.3",
+        "swagger-ui-express": "^4.3.0",
         "ts-jest": "^27.0.3",
         "ts-loader": "^9.2.3",
         "ts-node": "^10.0.0",
