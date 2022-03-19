@@ -1,0 +1,24 @@
+name: add-daily-stock
+
+on:
+    schedule:
+        - cron: "0 16 * * 1-5"
+
+jobs:
+    cron:
+        runs-on: ubuntu-latest
+        environment: development
+        steps:
+            - uses: actions/setup-node@v2
+              with:
+                  node-version: "14"
+            - name: Check out repository code
+              uses: actions/checkout@v2
+            - name: Install Pacaksges
+              run: yarn install
+            - name: CI
+              run: |
+                  npm ci
+            - name: Run Cron
+              run: |
+                  yarn insert-daily-data
