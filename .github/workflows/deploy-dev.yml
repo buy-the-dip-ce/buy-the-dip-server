@@ -4,8 +4,9 @@ on:
         branches:
             - dev
 jobs:
-    Explore-GitHub-Actions:
+    Deploy-Serverless:
         runs-on: ubuntu-latest
+        environment: development
         steps:
             - uses: actions/setup-node@v2
               with:

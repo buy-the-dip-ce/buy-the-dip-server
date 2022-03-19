@@ -15,10 +15,10 @@ useDotenv: true
 provider:
     name: aws
     region: ${env:SERVERLESS_REGION}
-    stage: ${opt:stage}
+    stage: ${env:STAGE}
     runtime: nodejs14.x
     deploymentBucket:
-        name: ${env:SERVERLESS_S3_BUCKET_PREFIX}-${opt:stage}
+        name: ${env:SERVERLESS_S3_BUCKET_PREFIX}-${env:STAGE}
 
 functions:
     main: # The name of the lambda function
