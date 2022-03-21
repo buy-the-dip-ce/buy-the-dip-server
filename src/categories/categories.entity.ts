@@ -1,4 +1,4 @@
-import { Portfolio } from "./portfolio.entity";
+import { Portfolio } from "../portfolio/portfolio.entity";
 import { User } from "../user/user.entity";
 import {
   Entity,

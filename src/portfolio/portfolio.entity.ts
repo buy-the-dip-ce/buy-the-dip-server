@@ -1,6 +1,6 @@
 import { Ticker } from "./../ticker/ticker.entity";
 import { User } from "../user/user.entity";
-import { Categories } from "./categories.entity";
+import { Categories } from "../categories/categories.entity";
 
 import {
   Entity,
