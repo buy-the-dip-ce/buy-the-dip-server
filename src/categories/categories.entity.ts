@@ -14,7 +14,7 @@ export class Categories {
   id: number;
 
   @Column("text")
-  category: string;
+  name: string;
 
   @Column("simple-array")
   ticker_arr: string[];

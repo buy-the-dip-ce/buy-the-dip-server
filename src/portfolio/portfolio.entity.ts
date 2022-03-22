@@ -14,8 +14,8 @@ import {
 
 @Entity()
 export class Portfolio {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn("uuid")
+  id: string;
 
   @CreateDateColumn({
     type: "timestamp",

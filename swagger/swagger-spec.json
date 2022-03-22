@@ -60,6 +60,37 @@
 					}
 				}
 			}
+		},
+		"/portfolios": {
+			"post": {
+				"operationId": "PortfolioController_savePortfolio",
+				"parameters": [],
+				"responses": {
+					"201": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/portfolios/{id}": {
+			"get": {
+				"operationId": "PortfolioController_getOne",
+				"parameters": [
+					{
+						"name": "id",
+						"required": true,
+						"in": "path",
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": ""
+					}
+				}
+			}
 		}
 	},
 	"info": {
