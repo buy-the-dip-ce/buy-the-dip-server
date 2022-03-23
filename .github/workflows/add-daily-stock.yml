@@ -16,9 +16,6 @@ jobs:
               uses: actions/checkout@v2
             - name: Install Pacaksges
               run: yarn install
-            - name: CI
-              run: |
-                  npm ci
             - name: Run Cron
               run: |
                   yarn insert-daily-data
