@@ -1,9 +1,9 @@
+import { Categories } from "./categories.entity";
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { Ticker } from "./ticker.entity";
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Ticker])],
+  imports: [TypeOrmModule.forFeature([Categories])],
   exports: [TypeOrmModule],
 })
-export class TickerModule {}
+export class UsersModule {}
