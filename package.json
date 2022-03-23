@@ -28,6 +28,7 @@
         "sls:deploy:prod": "sls deploy -v --stage prod"
     },
     "dependencies": {
+        "@elastic/elasticsearch": "^8.1.0",
         "@nestjs/common": "^8.0.0",
         "@nestjs/config": "^1.2.0",
         "@nestjs/core": "^8.0.0",
