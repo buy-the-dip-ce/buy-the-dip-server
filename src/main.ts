@@ -1,20 +1,11 @@
+import { Client } from "@elastic/elasticsearch";
 import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import path from "path";
 import fs from "fs";
 import dotenv from "dotenv";
-
-import { Client } from "@elastic/elasticsearch";
-
-const client = new Client({
-  node: "http://localhost:9200",
-  maxRetries: 5,
-  requestTimeout: 60000,
-  sniffOnStart: true,
-});
-
-client.ping();
+import { esTest } from "./connection";
 
 dotenv.config();
 
@@ -49,6 +40,8 @@ async function bootstrap() {
       swaggerSpecPath,
       JSON.stringify(document, undefined, "\t") + "\n"
     );
+
+    esTest();
   }
 
   await app.listen(4000);
