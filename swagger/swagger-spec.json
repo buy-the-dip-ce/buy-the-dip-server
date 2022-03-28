@@ -91,6 +91,26 @@
 					}
 				}
 			}
+		},
+		"/tickers/search": {
+			"get": {
+				"operationId": "TickerController_search",
+				"parameters": [
+					{
+						"name": "keyword",
+						"required": true,
+						"in": "query",
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": ""
+					}
+				}
+			}
 		}
 	},
 	"info": {

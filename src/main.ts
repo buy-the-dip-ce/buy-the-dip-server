@@ -4,11 +4,14 @@ import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger"
 import path from "path"
 import fs from "fs"
 import dotenv from "dotenv"
-
 dotenv.config()
 
 async function bootstrap() {
-    const app = await NestFactory.create(AppModule)
+    const app = await NestFactory.create(AppModule, {
+        logger: ["log", "error", "debug", "verbose", "warn"],
+    })
+
+    app.enableCors()
 
     if (process.env.STAGE === "dev") {
         const options = new DocumentBuilder()
