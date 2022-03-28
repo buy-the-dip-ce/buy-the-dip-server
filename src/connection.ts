@@ -1,40 +1,43 @@
-import { read } from "fs";
-import fs from "fs";
+// import { read } from "fs";
+// import fs from "fs";
 import { Client } from "@elastic/elasticsearch";
 
-export async function esTest() {
-  // const client = new Client({
-  //   node: "http://localhost:9200",
-  //   maxRetries: 5,
-  //   requestTimeout: 60000,
-  //   sniffOnStart: true,
-  // });
+const client = new Client({
+  node: "http://localhost:9200",
+  maxRetries: 5,
+  requestTimeout: 60000,
+  sniffOnStart: true,
+});
 
-  //* 인덱스 생성
-  // try {
-  //   client.indices.create({
-  //     index: "tickers",
-  //   });
-  // } catch (error) {
-  //   console.log(error);
-  // }
+export default client;
+//* 인덱스 생성
+// try {
+//   client.indices.create({
+//     index: "tickers",
+//   });
+// } catch (error) {
+//   console.log(error);
+// }
 
-  //* 데이터 삽입
-
-  fs.readFile("nasdaq_2022_03_09.csv", "utf8", (err, data) => {
-    if (err) {
-      console.error(err);
-    } else {
-      console.log(data);
-    }
-  });
-  // const document = await client.get({
-  //   index: "books",
-  //   id: "1",
-  // });
-
-  // console.log(document);
-}
+//* 데이터 삽입
+// const file = fs.readFileSync(
+//   "/Users/lim-eunbi/Desktop/buy the dip/buy-the-dip-server/static/nasdaq_2022_03_09.csv",
+//   "utf8"
+// );
+// const data = file.split("\r\n");
+// for (let i = 1; i < data.length; i++) {
+//   const ticker = data[i].split(",");
+//   await client.index({
+//     index: "tickers",
+//     document: {
+//       symbol: ticker[0],
+//       name: ticker[1],
+//       country: ticker[6],
+//       sector: ticker[9],
+//       industry: ticker[10],
+//     },
+//   });
+// }
 
 // type IElasticData = {
 //   id: number;
@@ -66,21 +69,5 @@ export async function esTest() {
 //   document: {
 //     character: 'Ned Stark',
 //     quote: 'Winter is coming.'
-//   }
-// })
-
-// await client.index({
-//   index: 'game-of-thrones',
-//   document: {
-//     character: 'Daenerys Targaryen',
-//     quote: 'I am the blood of the dragon.'
-//   }
-// })
-
-// await client.index({
-//   index: 'game-of-thrones',
-//   document: {
-//     character: 'Tyrion Lannister',
-//     quote: 'A mind needs books like a sword needs a whetstone.'
 //   }
 // })

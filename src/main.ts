@@ -5,8 +5,6 @@ import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import path from "path";
 import fs from "fs";
 import dotenv from "dotenv";
-import { esTest } from "./connection";
-
 dotenv.config();
 
 async function bootstrap() {
@@ -40,8 +38,6 @@ async function bootstrap() {
       swaggerSpecPath,
       JSON.stringify(document, undefined, "\t") + "\n"
     );
-
-    esTest();
   }
 
   await app.listen(4000);

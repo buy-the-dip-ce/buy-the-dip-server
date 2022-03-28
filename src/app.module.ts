@@ -1,3 +1,5 @@
+import { TickerModule } from "./ticker/tickers.module";
+import { TickerController } from "./ticker/ticker.controller";
 import { PortfolioModule } from "./portfolio/portfolio.module";
 import { Categories } from "./categories/categories.entity";
 import { Portfolio } from "./portfolio/portfolio.entity";
@@ -34,6 +36,7 @@ import { UsersModule } from "./user/users.module";
     }),
     UsersModule,
     PortfolioModule,
+    TickerModule,
   ],
   controllers: [AppController],
   providers: [AppService],
