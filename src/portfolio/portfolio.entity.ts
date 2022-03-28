@@ -1,16 +1,8 @@
 import { Ticker } from "./../ticker/ticker.entity";
 import { User } from "../user/user.entity";
-import { Categories } from "../categories/categories.entity";
+import { Category } from "../categories/categories.entity";
 
-import {
-  Entity,
-  Column,
-  PrimaryGeneratedColumn,
-  ManyToOne,
-  JoinColumn,
-  CreateDateColumn,
-  OneToMany,
-} from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, CreateDateColumn, OneToMany } from "typeorm";
 
 @Entity()
 export class Portfolio {
@@ -23,6 +15,6 @@ export class Portfolio {
   })
   public created_at: Date;
 
-  @OneToMany(() => Categories, (categories) => categories.portfolio)
-  categories: Categories[];
+  @OneToMany(() => Category, (category) => category.portfolio)
+  categories: Category[];
 }

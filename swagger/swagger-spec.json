@@ -72,6 +72,17 @@
 				}
 			}
 		},
+		"/portfolios/{id}/categories/{category}": {
+			"post": {
+				"operationId": "PortfolioController_addCategory",
+				"parameters": [],
+				"responses": {
+					"201": {
+						"description": ""
+					}
+				}
+			}
+		},
 		"/portfolios/{id}": {
 			"get": {
 				"operationId": "PortfolioController_getOne",

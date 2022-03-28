@@ -1,7 +1,7 @@
 import { TickerModule } from "./ticker/tickers.module";
 import { TickerController } from "./ticker/ticker.controller";
 import { PortfolioModule } from "./portfolio/portfolio.module";
-import { Categories } from "./categories/categories.entity";
+import { Category } from "./categories/categories.entity";
 import { Portfolio } from "./portfolio/portfolio.entity";
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
@@ -23,6 +23,7 @@ import { UsersModule } from "./user/users.module";
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
+
       useFactory: (configService: ConfigService<any>) => ({
         type: "mysql",
         host: configService.get("database").host,
@@ -30,8 +31,9 @@ import { UsersModule } from "./user/users.module";
         username: configService.get("database").username,
         password: configService.get("database").password,
         database: configService.get("database").database,
-        entities: [User, Photo, Ticker, DailyStock, Portfolio, Categories],
+        entities: [User, Photo, Ticker, DailyStock, Portfolio, Category],
         synchronize: true,
+        keepConnectionAlive: true,
       }),
     }),
     UsersModule,

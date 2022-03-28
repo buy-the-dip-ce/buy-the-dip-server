@@ -1,0 +1,11 @@
+singleQuote: false
+printWidth: 120
+
+trailingComma: "es5"
+jsxBracketSameLine: true
+jsxSingleQuote: false
+quoteProps: "as-needed"
+arrowParens: "always"
+bracketSpacing: true
+htmlWhitespaceSensitivity: css
+endOfLine: "lf"
