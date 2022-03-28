@@ -15,7 +15,10 @@ jobs:
             - name: Check out repository code
               uses: actions/checkout@v2
             - name: Install Pacaksges
-              run: yarn install
+              run: npm install
+             - name: CI
+              run: |
+                  npm ci
             - name: Run Cron
               run: |
                   yarn insert-daily-data
