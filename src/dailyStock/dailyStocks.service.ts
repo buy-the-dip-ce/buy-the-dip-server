@@ -15,7 +15,7 @@ export class DailyService {
   }
 
   findOne(ticker: string): Promise<DailyStock> {
-    return this.dailyStocksRepository.findOne(ticker);
+    return this.dailyStocksRepository.findOne({ ticker });
   }
 
   async remove(id: string): Promise<void> {

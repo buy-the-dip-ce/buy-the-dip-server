@@ -41,7 +41,6 @@ import { UsersModule } from "./user/users.module";
     UsersModule,
     PortfolioModule,
     TickerModule,
-    DailyModule,
   ],
   controllers: [AppController],
   providers: [AppService],

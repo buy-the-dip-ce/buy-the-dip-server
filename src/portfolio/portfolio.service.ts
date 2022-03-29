@@ -1,3 +1,4 @@
+import { DailyStock } from "./../dailyStock/dailyStock.entity";
 import { TickerModule } from "./../ticker/tickers.module";
 import { TickerService } from "./../ticker/tickers.service";
 import { Category } from "./../categories/categories.entity";
@@ -19,10 +20,6 @@ export class PortfolioService {
   private categoriesRepository: Repository<Category>;
 
   async createPortfolio(portfolioBody: CreatePortfolioBody) {
-    //? 빈 포트폴리오를 만든 후 id 를 받는다
-    //? 해당 id의 카테고리들을 만든다
-    //? 처음 포트폴리오의 카테고리를 만든 카테고리로 채운다
-
     const _portfolio = new Portfolio();
     const newPortfolio = await this.portfolioRepository.save(_portfolio);
 

@@ -51,7 +51,9 @@ export class PortfolioController {
       const tickerPromises = category.ticker_arr.map(async (symbol) => {
         //@ts-ignore
         const tickerData = await this.tickerService.findOne(symbol);
+        console.log("이거", tickerData, symbol);
         const dailyData = await this.dailyService.findOne(symbol);
+        console.log("저거", dailyData);
         if (!tickerData) {
           return;
         }
@@ -61,7 +63,7 @@ export class PortfolioController {
           market_cap: tickerData.market_cap,
           per: tickerData.per,
           mdd: (tickerData.high_52 - dailyData.close) / tickerData.high_52,
-          // ytd:
+          ytd: dailyData.close,
         };
         tickerArray.push(ticker);
       });
@@ -70,6 +72,7 @@ export class PortfolioController {
     });
     try {
       await Promise.all(promises);
+      console.log(tickerData);
     } catch (e) {
       throw new InternalServerErrorException(e);
     }
