@@ -1,3 +1,5 @@
+import { DailyModule } from "./dailyStock/dailyStocks.module";
+import { DailyService } from "./dailyStock/dailyStocks.service";
 import { TickerModule } from "./ticker/tickers.module";
 import { TickerController } from "./ticker/ticker.controller";
 import { PortfolioModule } from "./portfolio/portfolio.module";
@@ -39,6 +41,7 @@ import { UsersModule } from "./user/users.module";
     UsersModule,
     PortfolioModule,
     TickerModule,
+    DailyModule,
   ],
   controllers: [AppController],
   providers: [AppService],
