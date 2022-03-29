@@ -36,6 +36,16 @@ export class PortfolioController {
     return true;
   }
 
+  @Patch("/portfolios/:id/categories/:category")
+  async editCategoryAPI(@Param("id") portfolioId, @Param("category") category, @Body() body) {
+    const { prevName, name } = body;
+    if (!portfolioId || !category || !name) {
+      throw new NotFoundException();
+    }
+    await this.categoryService.editCategory(portfolioId, category, prevName, name);
+    return true;
+  }
+
   @Post("/portfolios/:id/categories")
   async addCategory(@Param("id") portfolioId, @Body() body) {
     const { category } = body;

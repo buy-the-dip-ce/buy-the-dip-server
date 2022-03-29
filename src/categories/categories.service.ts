@@ -19,6 +19,15 @@ export class CategoryService {
     private portfolioService: PortfolioService
   ) {}
 
+  async editCategory(portfolioId: string, category: string, prevName: string, name: string) {
+    const portfolio = await this.portfolioService.findOne(portfolioId);
+
+    const _category = portfolio.categories.find((_category) => _category.name === prevName);
+    _category.name = name;
+
+    return await this.categoryRepository.update(_category.id, _category);
+  }
+
   async addSymbolToCategory(params: AddCategoryParams) {
     const portfolio = await this.portfolioService.findOne(params.portfolioId);
 

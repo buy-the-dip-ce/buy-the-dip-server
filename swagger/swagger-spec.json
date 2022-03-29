@@ -81,6 +81,15 @@
 						"description": ""
 					}
 				}
+			},
+			"patch": {
+				"operationId": "PortfolioController_editCategoryAPI",
+				"parameters": [],
+				"responses": {
+					"200": {
+						"description": ""
+					}
+				}
 			}
 		},
 		"/portfolios/{id}/categories": {
