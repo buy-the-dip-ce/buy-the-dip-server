@@ -3,6 +3,9 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { DailyStock } from "./dailyStock.entity";
 
+type dailyStockType = {
+  [key: string]: string[];
+};
 @Injectable()
 export class DailyService {
   constructor(
@@ -14,8 +17,20 @@ export class DailyService {
     return this.dailyStocksRepository.find();
   }
 
-  findOne(ticker: string): Promise<DailyStock> {
-    return this.dailyStocksRepository.findOne({ ticker });
+  async findOne(ticker: string): Promise<DailyStock> {
+    const dailyStock = await this.dailyStocksRepository
+      .createQueryBuilder("dailystock")
+      .where("dailystock.ticker = :ticker", { ticker: ticker })
+      .orderBy("date", "DESC")
+      .getOne();
+    return dailyStock;
+  }
+  async yearData(ticker: string): Promise<DailyStock> {
+    const dailyStock = await this.dailyStocksRepository
+      .createQueryBuilder("dailystock")
+      .where("dailystock.ticker = :ticker", { ticker: ticker })
+      .getOne();
+    return dailyStock;
   }
 
   async remove(id: string): Promise<void> {

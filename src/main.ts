@@ -4,7 +4,6 @@ import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
 import path from "path";
 import fs from "fs";
 import dotenv from "dotenv";
-import { ElasticFunction } from "./connection";
 dotenv.config();
 
 async function bootstrap() {
@@ -38,7 +37,6 @@ async function bootstrap() {
     } catch (e) {}
     fs.writeFileSync(swaggerSpecPath, JSON.stringify(document, undefined, "\t") + "\n");
   }
-  ElasticFunction();
   await app.listen(4000);
 }
 bootstrap();
