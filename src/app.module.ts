@@ -1,13 +1,9 @@
-import { DailyModule } from "./dailyStock/dailyStocks.module";
-import { DailyService } from "./dailyStock/dailyStocks.service";
 import { TickerModule } from "./ticker/tickers.module";
-import { TickerController } from "./ticker/ticker.controller";
 import { PortfolioModule } from "./portfolio/portfolio.module";
 import { Category } from "./categories/categories.entity";
 import { Portfolio } from "./portfolio/portfolio.entity";
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { ElasticsearchModule } from "@nestjs/elasticsearch";
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { User } from "./user/user.entity";
@@ -21,18 +17,6 @@ import { UsersModule } from "./user/users.module";
   imports: [
     ConfigModule.forRoot({
       load: [configuration],
-    }),
-    ElasticsearchModule.registerAsync({
-      imports: [ConfigModule],
-      inject: [ConfigService],
-      useFactory: async (configService: ConfigService<any>) => ({
-        node: configService.get("es").endpoint,
-
-        auth: {
-          username: configService.get("es").username,
-          password: configService.get("es").password,
-        },
-      }),
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],

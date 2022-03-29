@@ -2,6 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { Ticker } from "./ticker.entity";
+import { ElasticsearchService } from "@nestjs/elasticsearch";
 
 type tickerDataType = {
   [key: string]: string[];
@@ -10,7 +11,8 @@ type tickerDataType = {
 export class TickerService {
   constructor(
     @InjectRepository(Ticker)
-    private tickersRepository: Repository<Ticker>
+    private tickersRepository: Repository<Ticker>,
+    private readonly elasticsearchService: ElasticsearchService
   ) {}
 
   findAll(): Promise<Ticker[]> {
