@@ -44,4 +44,16 @@ export class CategoryService {
     const changedCategory = await this.categoryRepository.update(targetCategory.id, _category);
     return changedCategory;
   }
+
+  async addCategory(portfolioId: string, category: string) {
+    const portfolio = await this.portfolioService.findOne(portfolioId);
+
+    const _category = new Category();
+    _category.portfolio = portfolio;
+    _category.name = category;
+    _category.ticker_arr = [];
+
+    const newCategory = await this.categoryRepository.save(_category);
+    return newCategory;
+  }
 }

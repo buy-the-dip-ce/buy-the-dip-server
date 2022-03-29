@@ -74,6 +74,17 @@
 		},
 		"/portfolios/{id}/categories/{category}": {
 			"post": {
+				"operationId": "PortfolioController_addSymbolToCategory",
+				"parameters": [],
+				"responses": {
+					"201": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/portfolios/{id}/categories": {
+			"post": {
 				"operationId": "PortfolioController_addCategory",
 				"parameters": [],
 				"responses": {

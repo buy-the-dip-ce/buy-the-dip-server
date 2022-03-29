@@ -27,14 +27,22 @@ export class PortfolioController {
   }
 
   @Post("/portfolios/:id/categories/:category")
-  async addCategory(@Param("id") portfolioId, @Param("category") category, @Body() body) {
-    console.log(portfolioId, body, category);
+  async addSymbolToCategory(@Param("id") portfolioId, @Param("category") category, @Body() body) {
     const { symbol } = body;
     if (!portfolioId || !category || !symbol) {
       throw new NotFoundException();
     }
     await this.categoryService.addSymbolToCategory({ portfolioId, category, symbol });
     return true;
+  }
+
+  @Post("/portfolios/:id/categories")
+  async addCategory(@Param("id") portfolioId, @Body() body) {
+    const { category } = body;
+    if (!portfolioId || !category) {
+      throw new NotFoundException();
+    }
+    return await this.categoryService.addCategory(portfolioId, category);
   }
 
   @Get("/portfolios/:id")
