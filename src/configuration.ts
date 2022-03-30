@@ -6,9 +6,4 @@ export default () => ({
     password: process.env.DATABASE_PASSWORD,
     database: process.env.DATABASE_DATABASE_NAME,
   },
-  es: {
-    endpoint: process.env.ELASTIC_SEARCH_ENDPOINT,
-    username: process.env.ELASTIC_SEARCH_USERNAME,
-    password: process.env.ELASTIC_SEARCH_PASSWORD,
-  },
 });
