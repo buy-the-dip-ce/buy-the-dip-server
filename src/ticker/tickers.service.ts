@@ -29,7 +29,7 @@ export class TickerService {
         },
       });
 
-      const { data } = await axiosClient.get(`/tickers/_search?q=${keyword}`);
+      const { data } = await axiosClient.get(`/ticker/_search?q=${keyword}`);
       const stocks = data.hits.hits.map((row) => {
         return {
           symbol: row._source["symbol"],
