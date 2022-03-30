@@ -5,22 +5,22 @@ import { EventEmitter } from "stream";
 dotenv.config();
 
 const client = new Client({
-  node: process.env.ELASTIC_SEARCH_ENDPOINT,
+  node: process.env.ELASTIC_SERVER,
   auth: {
-    username: process.env.ELASTIC_SEARCH_USERNAME,
-    password: process.env.ELASTIC_SEARCH_PASSWORD,
+    username: process.env.ELASTIC_SERVER_USER,
+    password: process.env.ELASTIC_SERVER_PASSWORD,
   },
 });
 
 //* 인덱스 생성
 const ElasticFunction = async () => {
-  try {
-    // client.indices.create({
-    //   index: "tickers",
-    // });
-  } catch (error) {
-    console.log(error);
-  }
+  // try {
+  //   client.indices.create({
+  //     index: "ticker",
+  //   });
+  // } catch (error) {
+  //   console.log(error);
+  // }
   // * 데이터 삽입
   const file = fs.readFileSync("static/nasdaq_2022_03_09.csv", "utf8");
   const data = file.split("\r\n").map((stock) => {
@@ -39,7 +39,7 @@ const ElasticFunction = async () => {
     try {
       if (document?.name) {
         await client.index({
-          index: "tickers",
+          index: "ticker",
           document,
         });
         console.log("done");

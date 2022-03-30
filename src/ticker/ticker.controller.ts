@@ -10,13 +10,6 @@ export class TickerController {
 
   @Get("/tickers/search")
   async search(@Query("keyword") keyword: string) {
-    try {
-      const result = await this.elasticsearchService.search({ q: keyword });
-      return (
-        result?.hits?.hits?.map((index: any) => ({ symbol: index._source.symbol, name: index._source.name })) || []
-      );
-    } catch (e) {
-      new InternalServerErrorException();
-    }
+    return this.tickerService.find(keyword);
   }
 }

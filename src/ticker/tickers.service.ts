@@ -1,8 +1,8 @@
-import { Injectable } from "@nestjs/common";
+import { ElasticsearchService } from "@nestjs/elasticsearch";
+import { Injectable, InternalServerErrorException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { Ticker } from "./ticker.entity";
-import { ElasticsearchService } from "@nestjs/elasticsearch";
 
 type tickerDataType = {
   [key: string]: string[];
@@ -10,9 +10,9 @@ type tickerDataType = {
 @Injectable()
 export class TickerService {
   constructor(
+    private readonly elasticsearchService: ElasticsearchService,
     @InjectRepository(Ticker)
-    private tickersRepository: Repository<Ticker>,
-    private readonly elasticsearchService: ElasticsearchService
+    private tickersRepository: Repository<Ticker>
   ) {}
 
   findAll(): Promise<Ticker[]> {
@@ -21,25 +21,25 @@ export class TickerService {
 
   async find(keyword): Promise<tickerDataType[]> {
     const query = keyword;
-    // try {
-    //   const response = await elastic.search({
-    //     index: "tickers",
-    //     query: {
-    //       match: {
-    //         symbol: keyword,
-    //       },
-    //     },
-    //   });
-    //   const data = response.hits.hits.map((row) => {
-    //     return {
-    //       symbol: row._source["symbol"],
-    //       name: row._source["name"],
-    //     };
-    //   });
-    //   return data;
-    // } catch (error) {
-    //   console.log(error);
-    // }
+    try {
+      const response = await this.elasticsearchService.search({
+        index: "ticker",
+        query: {
+          match: {
+            symbol: keyword,
+          },
+        },
+      });
+      const data = response.hits.hits.map((row) => {
+        return {
+          symbol: row._source["symbol"],
+          name: row._source["name"],
+        };
+      });
+      return data;
+    } catch (error) {
+      new InternalServerErrorException();
+    }
     return query;
   }
 
