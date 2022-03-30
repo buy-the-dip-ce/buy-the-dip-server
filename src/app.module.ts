@@ -1,11 +1,9 @@
 import { TickerModule } from "./ticker/tickers.module";
-import { TickerController } from "./ticker/ticker.controller";
 import { PortfolioModule } from "./portfolio/portfolio.module";
 import { Category } from "./categories/categories.entity";
 import { Portfolio } from "./portfolio/portfolio.entity";
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
-
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
 import { User } from "./user/user.entity";

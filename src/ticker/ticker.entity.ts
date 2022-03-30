@@ -1,44 +1,44 @@
-import { Entity, Column, PrimaryColumn, UpdateDateColumn } from "typeorm"
-import { Photo } from "../photos/photo.entity"
+import { Entity, Column, PrimaryColumn, UpdateDateColumn } from "typeorm";
+import { Photo } from "../photos/photo.entity";
 
 enum Exchange {
-    NYSE = "NYSE",
-    NASDAQ = "NASDAQ",
+  NYSE = "NYSE",
+  NASDAQ = "NASDAQ",
 }
 //? 시가총액 단위 변경하기, updated_at yyyy-mm-dd로 변경하기
 @Entity()
 export class Ticker {
-    @PrimaryColumn({ length: 15 })
-    symbol: string
+  @PrimaryColumn({ length: 15 })
+  symbol: string;
 
-    @Column({ length: 70 })
-    name: string
+  @Column({ length: 70 })
+  name: string;
 
-    @Column({ type: "enum", enum: Exchange })
-    exchange: Exchange
+  @Column({ type: "enum", enum: Exchange })
+  exchange: Exchange;
 
-    @Column({ length: 60, nullable: true })
-    country: string
+  @Column({ length: 60, nullable: true })
+  country: string;
 
-    @Column("decimal", { precision: 5, scale: 2 })
-    market_cap: number
+  @Column("decimal", { precision: 10, scale: 2 })
+  market_cap: number;
 
-    @Column("decimal", { precision: 5, scale: 2 })
-    per: number
+  @Column("decimal", { precision: 10, scale: 2 })
+  per: number;
 
-    @Column("decimal", { precision: 5, scale: 2 })
-    high_52: number
+  @Column("decimal", { precision: 10, scale: 2 })
+  high_52: number;
 
-    @Column({ length: 20, nullable: true })
-    sector: string
+  @Column({ length: 20, nullable: true })
+  sector: string;
 
-    @Column({ length: 20, nullable: true })
-    industry: string
+  @Column({ length: 20, nullable: true })
+  industry: string;
 
-    @UpdateDateColumn({
-        type: "timestamp",
-        default: () => "CURRENT_TIMESTAMP(6)",
-        onUpdate: "CURRENT_TIMESTAMP(6)",
-    })
-    updated_at: Date
+  @UpdateDateColumn({
+    type: "timestamp",
+    default: () => "CURRENT_TIMESTAMP(6)",
+    onUpdate: "CURRENT_TIMESTAMP(6)",
+  })
+  updated_at: Date;
 }

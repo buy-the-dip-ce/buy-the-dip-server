@@ -1,13 +1,15 @@
-import { TickerService } from "./tickers.service"
-import { Controller, Get, Query } from "@nestjs/common"
-
+import { TickerService } from "./tickers.service";
+import { Controller, Get, Query, InternalServerErrorException } from "@nestjs/common";
+import { ElasticsearchService } from "@nestjs/elasticsearch";
 @Controller("")
 export class TickerController {
-    constructor(private readonly tickerService: TickerService) {}
+  constructor(
+    private readonly tickerService: TickerService,
+    private readonly elasticsearchService: ElasticsearchService
+  ) {}
 
-    @Get("/tickers/search")
-    search(@Query("keyword") keyword: string) {
-        const data = this.tickerService.find(keyword)
-        return data
-    }
+  @Get("/tickers/search")
+  async search(@Query("keyword") keyword: string) {
+    return this.tickerService.find(keyword);
+  }
 }

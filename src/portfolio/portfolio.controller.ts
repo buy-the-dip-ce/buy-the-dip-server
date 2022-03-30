@@ -1,3 +1,4 @@
+import { DailyService } from "./../dailyStock/dailyStocks.service";
 import { Category } from "./../categories/categories.entity";
 import { PortfolioService } from "./portfolio.service";
 import { Portfolio } from "./portfolio.entity";
@@ -16,7 +17,8 @@ export class PortfolioController {
   constructor(
     private portfolioService: PortfolioService,
     private categoryService: CategoryService,
-    private tickerService: TickerService
+    private tickerService: TickerService,
+    private dailyService: DailyService
   ) {}
 
   @Post("/portfolios")
@@ -66,16 +68,25 @@ export class PortfolioController {
       const tickerArray = [];
       const tickerPromises = category.ticker_arr.map(async (symbol) => {
         //@ts-ignore
-        const ticker = await this.tickerService.findOne(symbol);
-        if (!ticker) {
+        const tickerData = await this.tickerService.findOne(symbol);
+        const dailyData = await this.dailyService.findOne(symbol);
+        const yearlyData = await this.dailyService.yearData(symbol);
+        if (!tickerData) {
           return;
         }
+        const ticker = {
+          symbol: tickerData.symbol,
+          name: tickerData.name,
+          market_cap: tickerData.market_cap,
+          per: tickerData.per,
+          mdd: (((tickerData.high_52 - dailyData.close) / tickerData.high_52) * 100).toFixed(2),
+          ytd: ((dailyData.close / yearlyData.close - 1) * 100).toFixed(2),
+        };
         tickerArray.push(ticker);
       });
       promises.push(...tickerPromises);
       tickerData[`${category.name}`] = tickerArray;
     });
-
     try {
       await Promise.all(promises);
     } catch (e) {
