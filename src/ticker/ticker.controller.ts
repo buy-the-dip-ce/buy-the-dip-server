@@ -6,6 +6,6 @@ export class TickerController {
 
   @Get("/tickers/search")
   async search(@Query("keyword") keyword: string) {
-    return this.tickerService.find(keyword);
+    return await this.tickerService.searchWithES(keyword);
   }
 }
