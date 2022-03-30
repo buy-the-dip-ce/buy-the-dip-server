@@ -1,8 +1,8 @@
-import { ElasticsearchService } from "@nestjs/elasticsearch";
 import { Injectable, InternalServerErrorException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { Ticker } from "./ticker.entity";
+import axios from "axios";
 
 type tickerDataType = {
   [key: string]: string[];
@@ -10,7 +10,6 @@ type tickerDataType = {
 @Injectable()
 export class TickerService {
   constructor(
-    private readonly elasticsearchService: ElasticsearchService,
     @InjectRepository(Ticker)
     private tickersRepository: Repository<Ticker>
   ) {}
@@ -19,28 +18,29 @@ export class TickerService {
     return this.tickersRepository.find();
   }
 
-  async find(keyword): Promise<tickerDataType[]> {
-    const query = keyword;
+  async searchWithES(keyword): Promise<tickerDataType[]> {
     try {
-      const response = await this.elasticsearchService.search({
-        index: "ticker",
-        query: {
-          match: {
-            symbol: keyword,
-          },
+      const axiosClient = axios.create({
+        baseURL: process.env.ELASTIC_SEARCH_ENDPOINT,
+        headers: {
+          Authorization: `Basic ${Buffer.from(
+            `${process.env.ELASTIC_SEARCH_USERNAME!}:${process.env.ELASTIC_SEARCH_PASSWORD!}`
+          ).toString("base64")}`,
         },
       });
-      const data = response.hits.hits.map((row) => {
+
+      const { data } = await axiosClient.get(`/tickers/_search?q=${keyword}`);
+      const stocks = data.hits.hits.map((row) => {
         return {
           symbol: row._source["symbol"],
           name: row._source["name"],
         };
       });
-      return data;
+      return stocks;
     } catch (error) {
-      new InternalServerErrorException();
+      console.log(error);
+      throw new InternalServerErrorException();
     }
-    return query;
   }
 
   findOne(id: string): Promise<Ticker> {
