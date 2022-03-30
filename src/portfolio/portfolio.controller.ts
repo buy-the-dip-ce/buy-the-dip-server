@@ -30,7 +30,6 @@ export class PortfolioController {
 
   @Post("/portfolios/:id/categories/:category")
   async addCategory(@Param("id") portfolioId, @Param("category") category, @Body() body) {
-    console.log(portfolioId, body, category);
     const { symbol } = body;
     if (!portfolioId || !category || !symbol) {
       throw new NotFoundException();
