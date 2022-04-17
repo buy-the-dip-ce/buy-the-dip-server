@@ -15,7 +15,7 @@
 POST /portfolios
 
 ### Project Architecture
- ![아키텍쳐] (./DownloadsKakaoTalk_Photo_2022-04-17-17-47-28.png)
+ ![아키텍쳐](./Downloads/KakaoTalk_Photo_2022-04-17-17-47-28.png)
 
 ### Authors
 </div>
