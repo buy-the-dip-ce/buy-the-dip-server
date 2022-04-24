@@ -21,12 +21,7 @@ export class TickerService {
   async searchWithES(keyword): Promise<tickerDataType[]> {
     try {
       const axiosClient = axios.create({
-        baseURL: process.env.ELASTIC_SEARCH_ENDPOINT,
-        headers: {
-          Authorization: `Basic ${Buffer.from(
-            `${process.env.ELASTIC_SEARCH_USERNAME!}:${process.env.ELASTIC_SEARCH_PASSWORD!}`
-          ).toString("base64")}`,
-        },
+        baseURL: process.env.ELASTIC_SERVER,
       });
 
       const { data } = await axiosClient.get(`/ticker/_search?q=${keyword}`);
