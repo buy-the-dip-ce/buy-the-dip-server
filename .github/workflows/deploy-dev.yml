@@ -17,12 +17,12 @@ jobs:
         run: yarn install
       - name: insert secret to env
         run: |
-          echo ${{ secrets.DATABASE_HOST }}    >> .env.dev
-          echo ${{ secrets.DATABASE_PORT }}    >> .env.dev
-          echo ${{ secrets.DATABASE_USERNAME }}    >> .env.dev
-          echo ${{ secrets.DATABADATABASE_PASSWORDSE_HOST }}    >> .env.dev
-          echo ${{ secrets.DATABASE_DATABASE_NAME }}    >> .env.dev
-          echo ${{ secrets.STAGE }}    >> .env.dev
+          echo ${{ secrets.DATABASE_HOST }}    >> .env
+          echo ${{ secrets.DATABASE_PORT }}    >> .env
+          echo ${{ secrets.DATABASE_USERNAME }}    >> .env
+          echo ${{ secrets.DATABADATABASE_PASSWORDSE_HOST }}    >> .env
+          echo ${{ secrets.DATABASE_DATABASE_NAME }}    >> .env
+          echo ${{ secrets.STAGE }}    >> .env
       - name: test insert daily
         run: yarn insert-daily-data
       # - name: serverless deploy
