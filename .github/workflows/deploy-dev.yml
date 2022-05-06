@@ -17,21 +17,19 @@ jobs:
         run: yarn install
       - name: insert secret to env
         run: |
-          echo ${{ secrets.DATABASE_HOST }}    >> .env
-          echo ${{ secrets.DATABASE_PORT }}    >> .env
-          echo ${{ secrets.DATABASE_USERNAME }}    >> .env
-          echo ${{ secrets.DATABADATABASE_PASSWORDSE_HOST }}    >> .env
-          echo ${{ secrets.DATABASE_DATABASE_NAME }}    >> .env
-          echo ${{ secrets.STAGE }}    >> .env
-      - name: test insert daily
-        run: yarn insert-daily-data
-      # - name: serverless deploy
-      #   uses: serverless/github-action@v3
-      #   with:
-      #     args: deploy
-      #   env:
-      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      #     STAGE: ${{ secrets.STAGE }}
-      #     SERVERLESS_REGION: ${{ secrets.SERVERLESS_REGION }}
-      #     SERVERLESS_S3_BUCKET_PREFIX: ${{ secrets.SERVERLESS_S3_BUCKET_PREFIX }}
+          echo DATABASE_HOST=${{ secrets.DATABASE_HOST }}    >> .env
+          echo DATABASE_PORT=${{ secrets.DATABASE_PORT }}    >> .env
+          echo DATABASE_USERNAME=${{ secrets.DATABASE_USERNAME }}    >> .env
+          echo DATABADATABASE_PASSWORDSE_HOST=${{ secrets.DATABADATABASE_PASSWORDSE_HOST }}    >> .env
+          echo DATABASE_DATABASE_NAME=${{ secrets.DATABASE_DATABASE_NAME }}    >> .env
+          echo STAGE=${{ secrets.STAGE }}    >> .env
+      - name: serverless deploy
+        uses: serverless/github-action@v3
+        with:
+          args: deploy
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          STAGE: ${{ secrets.STAGE }}
+          SERVERLESS_REGION: ${{ secrets.SERVERLESS_REGION }}
+          SERVERLESS_S3_BUCKET_PREFIX: ${{ secrets.SERVERLESS_S3_BUCKET_PREFIX }}
