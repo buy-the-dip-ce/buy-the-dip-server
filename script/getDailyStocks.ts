@@ -27,14 +27,7 @@ interface DailyStockData {
 
 const run = async () => {
   console.log(new Date());
-  console.log({
-    host: process.env.DATABASE_HOST,
-    port: Number(process.env.DATABASE_PORT),
-    username: process.env.DATABASE_USERNAME,
-    password: process.env.DATABASE_PASSWORD,
-    database: process.env.DATABASE_DATABASE_NAME,
-    entities: [User, Photo, Ticker, DailyStock],
-  });
+
   try {
     const connection = await createConnection({
       type: "mysql",
