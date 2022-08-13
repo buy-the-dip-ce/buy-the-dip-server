@@ -30,9 +30,6 @@ jobs:
           echo DATABADATABASE_PASSWORDSE_HOST=${{ env.DATABADATABASE_PASSWORDSE_HOST }}    >> .env
           echo DATABASE_DATABASE_NAME=${{ env.DATABASE_DATABASE_NAME }}    >> .env
           echo STAGE=${{ env.STAGE }}    >> .env
-      - name: CI
-        run: |
-          npm ci
       - name: Run Cron
         run: |
           yarn insert-daily-data
