@@ -87,6 +87,7 @@ const run = async () => {
         process.exit(1);
       }
     });
+    console.log("완료했습니다.");
   } catch (e) {
     console.debug(e);
   }
