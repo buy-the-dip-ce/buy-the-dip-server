@@ -7,14 +7,13 @@ on:
 jobs:
   production-deploy:
     runs-on: ubuntu-latest
-    runs-on: ubuntu-latest
       env:
-        DATABASE_HOST: ${{ env.DATABASE_HOST }}
-        DATABASE_PORT: ${{ env.DATABASE_PORT }}
-        DATABASE_USERNAME: ${{ env.DATABASE_USERNAME }}
-        DATABADATABASE_PASSWORDSE_HOST: ${{ env.DATABADATABASE_PASSWORDSE_HOST }}
-        DATABASE_DATABASE_NAME: ${{ env.DATABASE_DATABASE_NAME }}
-        STAGE: ${{ env.STAGE }}
+        DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
+        DATABASE_PORT: ${{ secrets.DATABASE_PORT }}
+        DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
+        DATABADATABASE_PASSWORDSE_HOST: ${{ secrets.DATABADATABASE_PASSWORDSE_HOST }}
+        DATABASE_DATABASE_NAME: ${{ secrets.DATABASE_DATABASE_NAME }}
+        STAGE: ${{ secrets.STAGE }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
