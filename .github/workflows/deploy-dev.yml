@@ -7,6 +7,7 @@ on:
 jobs:
   development-deploy:
     runs-on: ubuntu-latest
+    environment: development
     env:
       DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
       DATABASE_PORT: ${{ secrets.DATABASE_PORT }}

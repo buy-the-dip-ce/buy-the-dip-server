@@ -9,6 +9,7 @@ on:
 jobs:
   add-daily-stock:
     runs-on: ubuntu-latest
+    environment: production
     env:
       DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
       DATABASE_PORT: ${{ secrets.DATABASE_PORT }}
