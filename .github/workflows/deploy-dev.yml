@@ -3,17 +3,16 @@ on:
   push:
     branches:
       - dev
+
 jobs:
-  Deploy-Serverless:
+  production-deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: "14"
-      - name: Check out repository code
-        uses: actions/checkout@v2
-      - name: Install Pacaksges
-        run: yarn install
+      - run: yarn install
       - name: insert secret to env
         run: |
           echo DATABASE_HOST=${{ env.DATABASE_HOST }}    >> .env
@@ -26,9 +25,3 @@ jobs:
         uses: serverless/github-action@v3
         with:
           args: deploy
-        env:
-          AWS_ACCESS_KEY_ID: ${{ env.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ env.AWS_SECRET_ACCESS_KEY }}
-          STAGE: ${{ env.STAGE }}
-          SERVERLESS_REGION: ${{ env.SERVERLESS_REGION }}
-          SERVERLESS_S3_BUCKET_PREFIX: ${{ env.SERVERLESS_S3_BUCKET_PREFIX }}
