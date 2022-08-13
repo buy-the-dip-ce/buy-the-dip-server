@@ -7,7 +7,7 @@ on:
     - cron: "0 16 * * 1-5"
 
 jobs:
-  production-deploy:
+  add-daily-stock:
     runs-on: ubuntu-latest
     env:
       DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
