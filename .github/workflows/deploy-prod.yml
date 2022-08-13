@@ -22,12 +22,12 @@ jobs:
       - run: yarn install
       - name: insert secret to env
         run: |
-          echo DATABASE_HOST=$DATABASE_HOST    >> .env
-          echo DATABASE_PORT=$DATABASE_PORT    >> .env
-          echo DATABASE_USERNAME=$DATABASE_USERNAME    >> .env
-          echo DATABADATABASE_PASSWORDSE_HOST=$DATABADATABASE_PASSWORDSE_HOST    >> .env
-          echo DATABASE_DATABASE_NAME=$DATABASE_DATABASE_NAME    >> .env
-          echo STAGE=$STAGE    >> .env
+          echo DATABASE_HOST="$DATABASE_HOST"    >> .env
+          echo DATABASE_PORT="$DATABASE_PORT"    >> .env
+          echo DATABASE_USERNAME="$DATABASE_USERNAME"    >> .env
+          echo DATABADATABASE_PASSWORDSE_HOST="$DATABADATABASE_PASSWORDSE_HOST"    >> .env
+          echo DATABASE_DATABASE_NAME="$DATABASE_DATABASE_NAME"    >> .env
+          echo STAGE="$STAGE"    >> .env
       - name: serverless deploy
         uses: serverless/github-action@v3
         with:
