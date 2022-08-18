@@ -84,7 +84,7 @@ const run = async () => {
         .execute();
 
       if (index === dailyStockDatas.length - 1) {
-        process.exit(1);
+        process.exit(0);
       }
     });
     console.log("완료했습니다.");
