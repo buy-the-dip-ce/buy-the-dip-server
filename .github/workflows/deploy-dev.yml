@@ -5,7 +5,7 @@ on:
       - dev
 
 jobs:
-  development-deploy:
+  production-deploy:
     runs-on: ubuntu-latest
     environment: development
     steps:
@@ -26,3 +26,9 @@ jobs:
         uses: serverless/github-action@v3
         with:
           args: deploy
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          STAGE: ${{ secrets.STAGE }}
+          SERVERLESS_REGION: ${{ secrets.SERVERLESS_REGION }}
+          SERVERLESS_S3_BUCKET_PREFIX: ${{ secrets.SERVERLESS_S3_BUCKET_PREFIX }}
