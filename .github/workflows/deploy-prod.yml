@@ -1,35 +1,34 @@
 name: deploy serverless
 on:
-    push:
-        branches:
-            - main
+  push:
+    branches:
+      - main
+
 jobs:
-    Deploy-Serverless:
-        runs-on: ubuntu-latest
-        environment: production
-        steps:
-            - uses: actions/setup-node@v2
-              with:
-                  node-version: "14"
-            - name: Check out repository code
-              uses: actions/checkout@v2
-            - name: Install Pacaksges
-              run: yarn install
-             - name: insert secret to env
-              run: |
-                echo DATABASE_HOST=${{ secrets.DATABASE_HOST }}    >> .env
-                echo DATABASE_PORT=${{ secrets.DATABASE_PORT }}    >> .env
-                echo DATABASE_USERNAME=${{ secrets.DATABASE_USERNAME }}    >> .env
-                echo DATABADATABASE_PASSWORDSE_HOST=${{ secrets.DATABADATABASE_PASSWORDSE_HOST }}    >> .env
-                echo DATABASE_DATABASE_NAME=${{ secrets.DATABASE_DATABASE_NAME }}    >> .env
-                echo STAGE=${{ secrets.STAGE }}    >> .env
-            - name: serverless deploy
-              uses: serverless/github-action@v3
-              with:
-                  args: deploy
-              env:
-                  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-                  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-                  STAGE: ${{ secrets.STAGE }}
-                  SERVERLESS_REGION: ${{ secrets.SERVERLESS_REGION }}
-                  SERVERLESS_S3_BUCKET_PREFIX: ${{ secrets.SERVERLESS_S3_BUCKET_PREFIX }}
+  production-deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "14"
+      - run: yarn install
+      - name: insert secret to env
+        run: |
+          echo DATABASE_HOST=${{ secrets.DATABASE_HOST }}   >> .env
+          echo DATABASE_PORT=${{ secrets.DATABASE_PORT }}    >> .env
+          echo DATABASE_USERNAME=${{ secrets.DATABASE_USERNAME }}   >> .env
+          echo DATABASE_PASSWORD=${{ secrets.DATABASE_PASSWORD }}    >> .env
+          echo DATABASE_DATABASE_NAME=${{ secrets.DATABASE_DATABASE_NAME }}   >> .env
+          echo STAGE=${{ secrets.STAGE }}    >> .env
+      - name: serverless deploy
+        uses: serverless/github-action@v3
+        with:
+          args: deploy
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          STAGE: ${{ secrets.STAGE }}
+          SERVERLESS_REGION: ${{ secrets.SERVERLESS_REGION }}
+          SERVERLESS_S3_BUCKET_PREFIX: ${{ secrets.SERVERLESS_S3_BUCKET_PREFIX }}
