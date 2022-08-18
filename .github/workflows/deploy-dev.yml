@@ -16,7 +16,6 @@ jobs:
       DATABASE_DATABASE_NAME: ${{ secrets.DATABASE_DATABASE_NAME }}
       STAGE: ${{ secrets.STAGE }}
     steps:
-      - shell: bash
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
