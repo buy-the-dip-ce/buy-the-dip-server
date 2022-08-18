@@ -25,9 +25,9 @@
     "insert-last-day-data": "ts-node ./script/getHistoricalDayData.ts --transpile-only",
     "add-es": "ts-node ./script/addStocksToES.ts --transpile-only",
     "sample": "ts-node ./script/sample.ts --transpile-only",
-    "sls:dev": "sls offline start --stage dev",
-    "sls:deploy:dev": "sls deploy -v --stage dev",
-    "sls:deploy:prod": "sls deploy -v --stage prod"
+    "sls:dev": "sls offline start --stage dev --prefix buy-the-dip-ec",
+    "sls:deploy:dev": "sls deploy -v --stage dev --prefix buy-the-dip-ec",
+    "sls:deploy:prod": "sls deploy -v --stage prod --prefix buy-the-dip-ec"
   },
   "dependencies": {
     "@nestjs/common": "^8.0.0",
@@ -63,6 +63,7 @@
     "jest": "^27.2.5",
     "plugin": "^0.3.3",
     "prettier": "^2.3.2",
+    "serverless": "^3.22.0",
     "serverless-offline": "^8.5.0",
     "serverless-plugin-optimize": "^4.2.1-rc.1",
     "serverless-plugin-typescript": "^2.1.1",

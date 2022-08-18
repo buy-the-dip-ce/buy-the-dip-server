@@ -22,7 +22,6 @@ jobs:
           echo DATABASE_PASSWORD=${{ secrets.DATABASE_PASSWORD }}    >> .env
           echo DATABASE_DATABASE_NAME=${{ secrets.DATABASE_DATABASE_NAME }}   >> .env
           echo STAGE=${{ secrets.STAGE }}    >> .env
-          cat .env
       - name: serverless deploy
         uses: serverless/github-action@v3
         with:

@@ -8,13 +8,6 @@ jobs:
   development-deploy:
     runs-on: ubuntu-latest
     environment: development
-    env:
-      DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
-      DATABASE_PORT: ${{ secrets.DATABASE_PORT }}
-      DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
-      DATABADATABASE_PASSWORDSE_HOST: ${{ secrets.DATABADATABASE_PASSWORDSE_HOST }}
-      DATABASE_DATABASE_NAME: ${{ secrets.DATABASE_DATABASE_NAME }}
-      STAGE: ${{ secrets.STAGE }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -23,12 +16,12 @@ jobs:
       - run: yarn install
       - name: insert secret to env
         run: |
-          echo DATABASE_HOST="$DATABASE_HOST"    >> .env
-          echo DATABASE_PORT="$DATABASE_PORT"    >> .env
-          echo DATABASE_USERNAME="$DATABASE_USERNAME"    >> .env
-          echo DATABADATABASE_PASSWORDSE_HOST="$DATABADATABASE_PASSWORDSE_HOST"    >> .env
-          echo DATABASE_DATABASE_NAME="$DATABASE_DATABASE_NAME"    >> .env
-          echo STAGE="$STAGE"    >> .env
+          echo DATABASE_HOST=${{ secrets.DATABASE_HOST }}   >> .env
+          echo DATABASE_PORT=${{ secrets.DATABASE_PORT }}    >> .env
+          echo DATABASE_USERNAME=${{ secrets.DATABASE_USERNAME }}   >> .env
+          echo DATABASE_PASSWORD=${{ secrets.DATABASE_PASSWORD }}    >> .env
+          echo DATABASE_DATABASE_NAME=${{ secrets.DATABASE_DATABASE_NAME }}   >> .env
+          echo STAGE=${{ secrets.STAGE }}    >> .env
       - name: serverless deploy
         uses: serverless/github-action@v3
         with:
